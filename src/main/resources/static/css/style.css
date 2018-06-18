@@ -1,0 +1,75 @@
+#calendar_table {
+	margin: 40px auto;
+	border-collapse: collapse;
+}
+#selmonth {
+	border: solid 1px #000;
+	margin: 40px auto;
+	padding: 20px;
+	width: 8em;
+	text-align: center;
+	cursor: pointer;//////////////
+}
+#selday {
+border: solid 1px #000;
+margin: 40px auto;
+padding: 20px;
+width: 8em;
+text-align: center;
+cursor: pointer;//////////////
+}
+#text-button {//////////////
+  display: block;
+  cursor: pointer;
+  width: 320px;
+  text-align: center;
+  border: 2px solid #232323;
+}//////////////
+
+#calendar_table,
+#calendar_table th,
+#calendar_table td {
+	border: solid 2px #aaa;
+
+}
+#calendar_table th,
+#calendar_table td {
+	padding: 20px;
+	font-size: 36px;
+	text-align: center;
+}
+
+#calendar_table td {
+cursor: pointer;/////////////////////
+}
+
+#calendar_table #calender_title {
+	font-size: 36px;
+	color: #888;
+}
+#calendar_table #calender_title:hover,
+#calendar_table .cal_prev:hover,
+#calendar_table .cal_next:hover{
+/*
+	opacity: 0.3;
+*/
+	background-color: #eee;
+}
+
+#calendar_table > tr > :first-child {color: #f00;}
+#calendar_table > tr > :last-child {color: #00f;}
+#calendar_table > tr:nth-of-type(1) > .cal_prev,
+#calendar_table > tr:nth-of-type(1) > .cal_next {
+	color: #888;
+}
+#calendar_table > tr:nth-of-type(2) > th:first-child,
+#calendar_table > tr:nth-of-type(2) > th:last-child {
+	color: #fff;
+}
+#calendar_table > tr:nth-of-type(2) {
+	background-color: #888;
+	color: #fff;
+}
+.outrange {
+	opacity: 0.3;
+}

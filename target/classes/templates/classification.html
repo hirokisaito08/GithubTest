@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja-JP">
+<head>
+<meta charset="UTF-8">
+内訳！！！
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script type="text/javascript">
+var num = 1;
+function add(button){
+var a = document.getElementById((++num));
+a.style.display = 'block';
+if (num == 4) button.disabled = true;
+}
+</script>
+</head>
+<body>
+<form method ="post" th:action="@{/classification}">
+<!--  <form action="" method="post"> -->
+
+<label>
+<div id=1 >
+項目1<input type="text"name="reason">
+金額<input type="number"name="acc">
+</div>
+</label>
+
+<label>
+<div id=2 style="display: none;">
+項目2<input type="text"name="reason">
+金額<input type="number"name="acc">
+</div>
+</label>
+
+</label>
+<label>
+<div id=3 style="display: none;">
+項目3<input type="text"name="reason">
+金額<input type="number"name="acc">
+</div>
+</label>
+
+</label>
+<label>
+<div id=4 style="display: none;">
+項目4<input type="text"name="reason">
+金額<input type="number"name="acc">
+</div>
+</label>
+
+<input type="submit">
+
+</form>
+<input type="button" onclick="add(this);" value="項目追加">
+ <input type="button" value="表示" onclick="location.href='./print'">
+<input type="button" onclick="location.href='./Registration'" value="戻る">
+
+
+</body>
+</html>

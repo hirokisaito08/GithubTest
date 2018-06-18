@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja-JP">
+<head>
+  <meta charset="UTF-8">
+
+</head>
+<body>
+
+<div th:each="list:${accumulation}">
+<li><span th:text=“${accumulation.id}”></span></li>  
+<li><span th:text=“${accumulation.reason}”></span></li>  
+<li><span th:text=“${accumulation.acc}”></span></li>  
+
+
+</div>
+<input type="button" onclick="location.href='./classification'" value="登録">
+<input type="button" onclick="location.href='./intro'" value="戻る">
+</body>
+</html>
