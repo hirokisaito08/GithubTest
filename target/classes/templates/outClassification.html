@@ -2,7 +2,7 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-収入の内訳！！！
+支出の内訳！！！
 <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <script type="text/javascript">
@@ -15,20 +15,20 @@ if (num == 4) button.disabled = true;
 </script>
 </head>
 <body>
-<form method ="post" th:action="@{/classification}">
+<form method ="post" th:action="@{/outClassification}">
 
 
 <label>
 <div id=1 >
 項目1<input type="text"name="reason">
-金額<input type="number"name="sal">
+金額<input type="number"name="out">
 </div>
 </label>
 
 <label>
 <div id=2 style="display: none;">
 項目2<input type="text"name="reason">
-金額<input type="number"name="sal">
+金額<input type="number"name="out">
 </div>
 </label>
 
@@ -36,7 +36,7 @@ if (num == 4) button.disabled = true;
 <label>
 <div id=3 style="display: none;">
 項目3<input type="text"name="reason">
-金額<input type="number"name="sal">
+金額<input type="number"name="out">
 </div>
 </label>
 
@@ -44,7 +44,7 @@ if (num == 4) button.disabled = true;
 <label>
 <div id=4 style="display: none;">
 項目4<input type="text"name="reason">
-金額<input type="number"name="sal">
+金額<input type="number"name="out">
 </div>
 </label>
 
@@ -65,23 +65,15 @@ if (num == 4) button.disabled = true;
     <th width="300">項目</th>
     <th width="300">金額</th>
   </tr>
-<div th:each="income:${data}">
+<div th:each="spending:${data1}">
   <tr>
-    <td><span th:text="${income.id}"></span></td>
-    <td><span th:text="${income.reason}"></span></td>
-    <td ><span th:text="${income.sal}"></span></td>
+    <td><span th:text="${spending.id}"></span></td>
+    <td><span th:text="${spending.reason}"></span></td>
+    <td ><span th:text="${spending.out}"></span></td>
   </tr>
 </div>
 </table>
 
-<!-- 
-<li><span th:text="${accumulation.id}"></span></li>
-<li><span th:text="${accumulation.reason}"></span></li>
-<li><span th:text="${accumulation.acc}"></span></li>
-  
-
-</div>
--->
 
 </body>
 </html>

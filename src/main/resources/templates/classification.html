@@ -1,9 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
- "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ja-JP">
+
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-内訳！！！
+収入の内訳！！！
 <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <script type="text/javascript">
@@ -17,19 +16,19 @@ if (num == 4) button.disabled = true;
 </head>
 <body>
 <form method ="post" th:action="@{/classification}">
-<!--  <form action="" method="post"> -->
+
 
 <label>
 <div id=1 >
 項目1<input type="text"name="reason">
-金額<input type="number"name="acc">
+金額<input type="number"name="sal">
 </div>
 </label>
 
 <label>
 <div id=2 style="display: none;">
 項目2<input type="text"name="reason">
-金額<input type="number"name="acc">
+金額<input type="number"name="sal">
 </div>
 </label>
 
@@ -37,7 +36,7 @@ if (num == 4) button.disabled = true;
 <label>
 <div id=3 style="display: none;">
 項目3<input type="text"name="reason">
-金額<input type="number"name="acc">
+金額<input type="number"name="sal">
 </div>
 </label>
 
@@ -45,7 +44,7 @@ if (num == 4) button.disabled = true;
 <label>
 <div id=4 style="display: none;">
 項目4<input type="text"name="reason">
-金額<input type="number"name="acc">
+金額<input type="number"name="sal">
 </div>
 </label>
 
@@ -56,6 +55,33 @@ if (num == 4) button.disabled = true;
  <input type="button" value="表示" onclick="location.href='./print'">
 <input type="button" onclick="location.href='./Registration'" value="戻る">
 
+
+
+
+<table>
+<caption>内訳一覧</caption>
+  <tr style="background:#ccccff">
+    <th width="300">ID　</th>
+    <th width="300">項目</th>
+    <th width="300">金額</th>
+  </tr>
+<div th:each="income:${data}">
+  <tr>
+    <td><span th:text="${income.id}"></span></td>
+    <td><span th:text="${income.reason}"></span></td>
+    <td ><span th:text="${income.sal}"></span></td>
+  </tr>
+</div>
+</table>
+
+<!-- 
+<li><span th:text="${accumulation.id}"></span></li>
+<li><span th:text="${accumulation.reason}"></span></li>
+<li><span th:text="${accumulation.acc}"></span></li>
+  
+
+</div>
+-->
 
 </body>
 </html>

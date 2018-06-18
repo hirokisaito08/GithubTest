@@ -6,13 +6,14 @@ CREATE TABLE someday (
 );
   
 CREATE TABLE income (  
-    id INT , 
+    id INT AUTO_INCREMENT , 
     reason CHAR,
     sal INT
+    
 );
   
 CREATE TABLE spending (  
-    id INT ,
+    id INT AUTO_INCREMENT ,
     reason CHAR,
     out INT
 );
