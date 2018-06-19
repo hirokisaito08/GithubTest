@@ -6,13 +6,69 @@
 </head>
 <body>
 
-
-収入
-<input type="button" onclick="location.href='./classification'" value="登録">
-支出
-<input type="button" onclick="location.href='./outClassification'" value="登録">
-貯金
-<input type="button" onclick="location.href='./accClassification'" value="登録">
+<table>
+  <caption>一日の収支表</caption>
+  <tr style="background:#ccccff">
+    <th width="60">項目</th>
+    <th width="60">金額</th>
+    <th width="60">編集</th>
+  </tr>
+  <tr>
+    <td>収入</td>
+    <td><span th:text="${data_sum1}"id="income"></span></td>
+    <td><input type="button" onclick="location.href='./classification'" value="登録"></td>
+  </tr>
+  <tr>
+    <td>支出</td>
+    <td><span th:text="${data_sum}"id="out"></span></td>
+    <td><input type="button" onclick="location.href='./outClassification'" value="登録"></td>
+  </tr>
+  <tr>
+    <td>貯金</td>
+    <td><span th:text="${data_sum2}"id="acc"></span></td>
+    <td><input type="button" onclick="location.href='./accClassification'" value="登録"></td>
+  </tr>
+</table>
 <input type="button" onclick="location.href='./intro'" value="戻る">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<div class ="chart">
+<canvas id="myChart" width="100px" height="50px"></canvas></div>
+<script type="text/javascript">
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var out = document.getElementById("out").innerText;
+var income = document.getElementById("income").innerText;
+var acc= document.getElementById("acc").innerText;
+
+
+console.log(document.getElementById("acc").innerText);
+
+
+out1 = Number(out);
+income1 = Number(income);
+
+acc1 = Number(acc);
+
+
+
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["収入", "支出", "貯金"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6"
+      ],
+      data: [out,income,acc]
+    }]
+  }
+});
+
+
+</script>
+
 </body>
 </html>
