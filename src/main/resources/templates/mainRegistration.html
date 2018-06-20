@@ -6,35 +6,31 @@
 </head>
 <body>
 
-
 <table>
-  <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
-
+  <caption>現在の収支表</caption>
+  <input type="button" value ="更新" onclick="kousin()">
   <tr style="background:#ccccff">
-    <th width="60">項目</th>
-    <th width="60">金額</th>
-    <th width="60">編集</th>
+    <th width="180">項目</th>
+    <th width="180">金額</th>
+
   </tr>
   <tr>
     <td>収入</td>
     <td><span th:text="${data_sum1}"id="income"></span></td>
-    <td><input type="button" onclick="location.href='./classification/'" value=></td>  日付の書き換え
+
   </tr>
   <tr>
     <td>支出</td>
     <td><span th:text="${data_sum}"id="out"></span></td>
-    <td><input type="button" onclick="location.href='./outClassification'" value="登録"></td>
   </tr>
   <tr>
     <td>貯金</td>
     <td><span th:text="${data_sum2}"id="acc"></span></td>
-    <td><input type="button" onclick="location.href='./accClassification'" value="登録"></td>
   </tr>
 </table>
-<input type="button" onclick="location.href='./index'" value="戻る">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-<div class ="chart"style="position: relative; height:35vh; width:70vw">
+<div class ="chart">
 <canvas id="myChart" ></canvas></div>
 
 
@@ -71,13 +67,17 @@ var myChart = new Chart(ctx, {
       data: [out2,out1,acc1]
     }]
   }
+
+
+
+
+
 });
 
+function kousin(){
+	  location.reload();
+	}
 
-position.onload(){
-var A1=document.getElement("year").innerText
-
-}
 
 </script>
 <style type="text/css">

@@ -161,7 +161,12 @@ if (row == 1 && dd > 7) {
   }
   //クリックして移動
    //alert(yy+'/'+mm+'/'+dd);
-   location.href = './Registration';
+   location.href = './index3';
+   var yymyId = document.getElementById("myId");
+   yymyId.value= (yy+'/'+mm+'/'+dd)
+   console.log(yymyId.value);
+   
+   document.myform.submit();
 
 }
 </script>
@@ -193,8 +198,8 @@ th {
 }
 td {
   border: solid 1px #000000;
-  margin: 30px auto;
-	padding: 30px;
+  margin: 25px auto;
+	padding: 25px;
 	width: 1em;
 	text-align: center;
 	cursor: pointer;
@@ -212,6 +217,9 @@ td {
 </head>
 <body>
 
+<form name="myform" method ="post" th:action="@{/Registration}"></span>
+    <input id = "myId" name="day"type="hidden" value="">
+</form>
 <div id="result"></div>
 
 </body>

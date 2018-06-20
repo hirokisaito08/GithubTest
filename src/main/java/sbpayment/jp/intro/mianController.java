@@ -1,7 +1,5 @@
 package sbpayment.jp.intro;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -15,10 +13,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class mianController {
 	
 	@GetMapping("/intro")
+	public String index2() {
+		return "index2";
+	}
+	
+	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}
-	
+
 	@Autowired
     private JdbcTemplate jdbc;
 
@@ -49,6 +52,9 @@ public class mianController {
 
 		return "/classification";
 	}
+	
+	
+	
 
 	/////////////////////////////////////////////支出
 	@PostMapping("/outClassification")
@@ -73,6 +79,10 @@ public class mianController {
 		model.addAttribute("data_sum",jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
 		return "/outClassification";
 	}	
+	
+
+	
+	
 /////////////////////////////////////////////////貯金
 	@PostMapping("/accClassification")
 	public String Post2(String reason[], String acc[], RedirectAttributes attr){
@@ -99,24 +109,83 @@ public class mianController {
 		return "/accClassification";
 	}		
 	
-	
+
 ////////////////////////////////////////////////////
 	@GetMapping("/Registration")
 	public String list(Model model) {
 		model.addAttribute("data_sum",jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
 		model.addAttribute("data_sum1",jdbc.queryForList("SELECT sum(sal) FROM income").get(0).get("sum(sal)"));
 		model.addAttribute("data_sum2",jdbc.queryForList("SELECT sum(acc) FROM accumulation").get(0).get("sum(acc)"));
-
+//		model.addAttribute("data_day",jdbc.queryForList("SELECT * FROM someday" ).get(0).get("day"));
+//		model.addAttribute("data_month",jdbc.queryForList("SELECT * FROM someday").get(0).get("month"));
+//		model.addAttribute("data_year",jdbc.queryForList("SELECT * FROM someday").get(0).get("year"));
 		return "/Registration";
 	}
 	//6/15
 	@PostMapping("/Registration")
-    public String Post(int id, String reason, int acc,RedirectAttributes attr){
+    public String Post(String day,RedirectAttributes attr){
+		System.out.println(day);
+		String[] dayA=day.split("/");
+		String a0=dayA[0];
+		String a1=dayA[1];
+		String a2=dayA[2];
+		
+		int dayb1=Integer.parseInt(a1);
+		int dayb2=Integer.parseInt(a2);
+		
+
+		if(dayb1/10==0) {
+			dayA[1]=0+dayA[1];
+		}else {dayA[1]=dayA[1];}
+		
+		if(dayb2/10==0) {
+			dayA[2]=0+dayA[2];
+		}else {dayA[2]=dayA[2];}
+		
+		for(int i=0;i<dayA.length;i++) {
+			
+			System.out.println(dayA[i]);
+			
+		}
 		
 
 		
+		//int sql=jdbc.queryForList("SELECT COUNT(*) FROM someday WHERE year = ? and month = ? and day = ?",dayA[0],dayA[1],dayA[1]).get(0);
+		if(jdbc.queryForList("SELECT * FROM someday WHERE year = ? and month = ? and day = ?",dayA[0],dayA[1],dayA[2]).size()==0) {
+		
+		jdbc.update("INSERT INTO someday (year,month,day) VALUES (?,?,?)",dayA[0],dayA[1],dayA[2]);
+		}
+		//jdbc.update("INSERT INTO someday (year,month,day) VALUES (?,?,?)",dayA[0],dayA[1],dayA[2]);
+		
+		attr.addFlashAttribute("data_day",jdbc.queryForList("SELECT * FROM someday WHERE day = ?" ,dayA[2] ).get(0).get("day"));
+		attr.addFlashAttribute("data_month",jdbc.queryForList("SELECT * FROM someday WHERE month = ?" ,dayA[1] ).get(0).get("month"));
+		attr.addFlashAttribute("data_year",jdbc.queryForList("SELECT * FROM someday WHERE year = ?" ,dayA[0] ).get(0).get("year"));
+		
         return "redirect:/Registration";
+
 	}
+	
+	
+	
+	//////////////////////////////////////////////////////mainR
+	@GetMapping("/mainRegistration")
+	public String list5(Model model) {
+		model.addAttribute("data_sum",jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
+		model.addAttribute("data_sum1",jdbc.queryForList("SELECT sum(sal) FROM income").get(0).get("sum(sal)"));
+		model.addAttribute("data_sum2",jdbc.queryForList("SELECT sum(acc) FROM accumulation").get(0).get("sum(acc)"));
+
+		return "/mainRegistration";
+	}
+	//6/15
+//	@PostMapping("/mainRegistration")
+//    public String Post3(int id, String reason, int acc,RedirectAttributes attr){
+//		
+//
+//		
+//        return "redirect:/mainRegistration";
+//	}
+//	
+	
 	
 	////////////////////////////////////////////////////////////////////0619
 	/*
