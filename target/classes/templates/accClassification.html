@@ -16,7 +16,10 @@ if (num == 4) button.disabled = true;
 </head>
 <body>
 <form method ="post" th:action="@{/accClassification}">
-
+ <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
+<input type="hidden" th:value="${data_year}"name="year"/>
+<input type="hidden" th:value="${data_month}"name="month"/>
+<input type="hidden" th:value="${data_day}"name="day"/>
 
 <label>
 <div id=1 >

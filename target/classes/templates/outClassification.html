@@ -16,7 +16,10 @@ if (num == 4) button.disabled = true;
 </head>
 <body>
 <form method ="post" th:action="@{/outClassification}">
-
+ <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
+<input type="hidden" th:value="${data_year}"name="year"/>
+<input type="hidden" th:value="${data_month}"name="month"/>
+<input type="hidden" th:value="${data_day}"name="day"/>
 
 <label>
 <div id=1 >
@@ -71,11 +74,6 @@ if (num == 4) button.disabled = true;
     <td><span th:text="${spending.id}"></span></td>
     <td><span th:text="${spending.reason}"></span></td>
     <td ><span th:text="${spending.out}"></span></td>
-    <!--   ////////////////////////////////////////////         6/19        -->
-    <!-- 
-	<td><input form method="post" type="checkbox"th:action="`{delete}"th:value="{spending.id}"></input></td>
--->
-
 
 </tr>
 
@@ -83,12 +81,11 @@ if (num == 4) button.disabled = true;
 
   <a class="button" href = "index" >戻る</a> 
     
-    </form>
     <!--            /////////////////////////////////////////////////// -->
 
 </div>
-  <td><span th:text="${data_sum}"></span></td>
-</table>
+  <td><span th:text="${data_sum1}"></span></td>
+
 
 
 </body>

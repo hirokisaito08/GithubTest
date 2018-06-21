@@ -8,6 +8,7 @@
 
 
 <table>
+
   <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
 
   <tr style="background:#ccccff">
@@ -17,12 +18,12 @@
   </tr>
   <tr>
     <td>収入</td>
-    <td><span th:text="${data_sum1}"id="income"></span></td>
-    <td><input type="button" onclick="location.href='./classification/'" value=></td>  日付の書き換え
+    <td><span th:text="${data_sum}"id="income"></span></td>
+    <td><input type="button" onclick="location.href='./classification'" value="登録"></td>
   </tr>
   <tr>
     <td>支出</td>
-    <td><span th:text="${data_sum}"id="out"></span></td>
+    <td><span th:text="${data_sum1}"id="out"></span></td>
     <td><input type="button" onclick="location.href='./outClassification'" value="登録"></td>
   </tr>
   <tr>
@@ -37,7 +38,6 @@
 <div class ="chart"style="position: relative; height:35vh; width:70vw">
 <canvas id="myChart" ></canvas></div>
 
-
 <script type="text/javascript">
 
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -46,7 +46,7 @@ var income = document.getElementById("income").innerText;
 var acc= document.getElementById("acc").innerText;
 
 
-console.log(document.getElementById("acc").innerText);
+console.log(document.getElementById("year"));
 
 
 var out1 = Number(out);
@@ -74,10 +74,6 @@ var myChart = new Chart(ctx, {
 });
 
 
-position.onload(){
-var A1=document.getElement("year").innerText
-
-}
 
 </script>
 <style type="text/css">

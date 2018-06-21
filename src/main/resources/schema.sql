@@ -1,4 +1,5 @@
 CREATE TABLE someday (
+	id INT AUTO_INCREMENT,
     year INT ,
     month INT ,
     day INT 
@@ -7,8 +8,10 @@ CREATE TABLE someday (
 CREATE TABLE income (  
     id INT AUTO_INCREMENT , 
     reason CHAR,
-    sal INT
-
+    sal INT,
+    year INT,
+    month INT,
+    day INT
 
     
 );
@@ -16,13 +19,18 @@ CREATE TABLE income (
 CREATE TABLE spending (  
     id INT AUTO_INCREMENT ,
     reason CHAR,
-    out INT
-  
+    out INT,
+    year INT,
+    month INT,
+    day INT
+
 );
 
 CREATE TABLE accumulation (  
     id INT AUTO_INCREMENT,
     reason CHAR,
-    acc INT
-
+    acc INT,
+    year INT,
+    month INT,
+    day INT
 )
