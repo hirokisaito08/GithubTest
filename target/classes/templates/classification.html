@@ -2,7 +2,7 @@
 <html lang="ja" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-支出の内訳！！！
+収入の内訳！！！
 <meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <script type="text/javascript">
@@ -16,7 +16,7 @@ if (num == 4) button.disabled = true;
 </head>
 <body>
 <form method ="post" th:action="@{/classification}">
- <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
+ <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日</caption>
 <input type="hidden" th:value="${data_year}"name="year"/>
 <input type="hidden" th:value="${data_month}"name="month"/>
 <input type="hidden" th:value="${data_day}"name="day"/>
@@ -53,14 +53,12 @@ if (num == 4) button.disabled = true;
 <input type="submit">
 </form>
 
-
 <input type="button" onclick="add(this);" value="項目追加">
  <input type="button" value="表示" onclick="location.href='./print'">
 <input type="button" onclick="location.href='./Registration'" value="戻る">
+<input type="button" onclick="location.href = './index'" value="TOPに戻る" /> 
 
-
-  <a class="button" href = "index" >戻る</a> 
-
+合計：<span th:text="${data_sum}"></span>
 
 
 <table>
@@ -78,12 +76,6 @@ if (num == 4) button.disabled = true;
     <td ><span th:text="${income.sal}"></span></td>
 </tr>
 </div>
-	<td><span th:text="${data_sum}"></span></td>
 </table>
-
-    <!--            /////////////////////////////////////////////////// -->
-
-
-
 </body>
 </html>

@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td>収入</td>
-    <td><span th:text="${data_sum}"id="income"></span></td>
+    <td><span th:text="${data_sum01}"id="income"></span></td>
     <td><input type="button" onclick="location.href='./classification'" value="登録"></td>
   </tr>
   <tr>
@@ -33,46 +33,94 @@
   </tr>
 </table>
 <input type="button" onclick="location.href='./index'" value="戻る">
-
+<span th:text="${data_sum02}" id="data02"></span>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <div class ="chart"style="position: relative; height:35vh; width:70vw">
-<canvas id="myChart" ></canvas></div>
+<canvas id="myBar2Chart" ></canvas></div>
 
 <script type="text/javascript">
 
-var ctx = document.getElementById("myChart").getContext('2d');
+
 var out = document.getElementById("out").innerText;
 var income = document.getElementById("income").innerText;
 var acc= document.getElementById("acc").innerText;
 
 
-console.log(document.getElementById("year"));
-
+var data02=document.getElementById("data02").innerText;
 
 var out1 = Number(out);
 var income1 = Number(income);
 var out2=Number(income-out-acc);
 
 var acc1 = Number(acc);
+var data022 =Number(data02);
 
 
-
-var myChart = new Chart(ctx, {
-
-  type: 'pie',
+//棒グラフ2
+var ctx = document.getElementById("myBar2Chart");
+var myBar2Chart = new Chart(ctx, {
+  //グラフの種類
+  type: 'bar',
+  //データの設定
   data: {
-    labels: ["収入", "支出", "貯金"],
-    datasets: [{
-      backgroundColor: [
-        "#2ecc71",
-        "#3498db",
-        "#95a5a6"
-      ],
-      data: [out2,out1,acc1]
-    }]
+      //データ項目のラベル
+      labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
+      //データセット
+      datasets: [
+          {
+              //凡例
+              label: "1年目",
+              //背景色
+              backgroundColor: "rgba(179,181,198,0.2)",
+              //枠線の色
+              borderColor: "rgba(179,181,198,1)",
+              //枠線の太さ
+              borderWidth: 1,
+              //背景色（ホバーしたときに）
+              hoverBackgroundColor: "rgba(179,181,198,0.4)",
+              //枠線の色（ホバーしたときに）
+              hoverBorderColor: "rgba(179,181,198,1)",
+              //グラフのデータ
+              data: [12, 19, , 5, data022, income]
+          },
+          {
+              //凡例
+              label: "2年目",
+              //背景色
+              backgroundColor: "rgba(255,99,132,0.2)",
+              //枠線の色
+              borderColor: "rgba(255,99,132,1)",
+              //枠線の太さ
+              borderWidth: 1,
+              //背景色（ホバーしたときに）
+              hoverBackgroundColor: "rgba(255,99,132,0.4)",
+              //枠線の色（ホバーしたときに）
+              hoverBorderColor: "rgba(255,99,132,1)",
+              //グラフのデータ
+              data: [15, 15, out, 8, 5, 6]
+          }
+      ]
+  },
+  //オプションの設定
+  options: {
+      //軸の設定
+      scales: {
+          //縦軸の設定
+          yAxes: [{
+              //目盛りの設定
+              ticks: {
+                  //開始値を0にする
+                  beginAtZero:true,
+              }
+          }]
+      },
+      //ホバーの設定
+      hover: {
+          //ホバー時の動作（single, label, dataset）
+          mode: 'single'
+      }
   }
 });
-
 
 
 </script>

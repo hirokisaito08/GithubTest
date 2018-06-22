@@ -11,8 +11,7 @@ CREATE TABLE income (
     sal INT,
     year INT ,
     month INT ,
-    day INT 
-
+    day INT
     
 );
   

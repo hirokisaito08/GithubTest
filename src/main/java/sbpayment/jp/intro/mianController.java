@@ -1,5 +1,7 @@
 package sbpayment.jp.intro;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -27,9 +29,16 @@ public class mianController {
 	////////////////////////////////////////////////////
 	@GetMapping("/Registration")
 	public String list(Model model) {
-		model.addAttribute("data_sum", jdbc.queryForList("SELECT sum(sal) FROM income ").get(0).get("sum(sal)"));
-		model.addAttribute("data_sum1", jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
-		model.addAttribute("data_sum2", jdbc.queryForList("SELECT sum(acc) FROM accumulation").get(0).get("sum(acc)"));
+		Map<String, Object> map = jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0);
+		
+		model.addAttribute("data_sum01", jdbc.queryForList("SELECT sum(sal) FROM income  WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(sal)"));
+//		model.addAttribute("data_sum02", jdbc.queryForList("SELECT sum(sal) FROM income  WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day1")).get(0).get("sum(sal)"));
+//		model.addAttribute("data_sum03", jdbc.queryForList("SELECT sum(sal) FROM income  WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day2")).get(0).get("sum(sal)"));
+//		model.addAttribute("data_sum04", jdbc.queryForList("SELECT sum(sal) FROM income  WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day11")).get(0).get("sum(sal)"));
+//		model.addAttribute("data_sum05", jdbc.queryForList("SELECT sum(sal) FROM income  WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day12")).get(0).get("sum(sal)"));
+
+		model.addAttribute("data_sum1", jdbc.queryForList("SELECT sum(out) FROM spending WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(out)"));
+		model.addAttribute("data_sum2", jdbc.queryForList("SELECT sum(acc) FROM accumulation WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(acc)"));
 		model.addAttribute("data_day",
 				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
 		model.addAttribute("data_month", jdbc
@@ -110,26 +119,21 @@ public class mianController {
 
 				jdbc.update("INSERT INTO income (reason,sal,year,month,day) VALUES (?,?,?,?,?)", reason[i],
 						Integer.valueOf(sal[i]), year, month, day);
+				
 				System.out.println(year / month / day);
-				// attr.addFlashAttribute("data_sum",jdbc.queryForList("SELECT sum(sal) FROM
-				// income").get(0).get("sum(sal)"));
-
 			}
 		}
-		attr.addFlashAttribute("data", jdbc.queryForList("SELECT * FROM income WHERE year = ? AND month = ?AND day = ?;", year, month, day));
 		return "redirect:/classification";
 	}
 
 	@GetMapping("/classification")
 	public String list2(Model model) {
-		// model.addAttribute("data",jdbc.queryForList("SELECT * FROM income"));
-		model.addAttribute("data_sum", jdbc.queryForList("SELECT sum(sal) FROM income").get(0).get("sum(sal)"));
-		model.addAttribute("data_day",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
-		model.addAttribute("data_month", jdbc
-				.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
-		model.addAttribute("data_year",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
+		Map<String, Object> map = jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0);
+		model.addAttribute("data_sum", jdbc.queryForList("SELECT sum(sal) FROM income WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(sal)"));
+		model.addAttribute("data_day",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
+		model.addAttribute("data_month", jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
+		model.addAttribute("data_year",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
+		model.addAttribute("data",jdbc.queryForList("SELECT * FROM income WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")));
 		return "/classification";
 	}
 
@@ -145,26 +149,19 @@ public class mianController {
 
 				jdbc.update("INSERT INTO spending (reason,out,year,month,day) VALUES (?,?,?,?,?)", reason[i],
 						Integer.valueOf(out[i]), year, month, day);
-				attr.addFlashAttribute("data1", jdbc.queryForList(
-						"SELECT * FROM spending WHERE year = ? AND month = ?AND day = ?;", year, month, day));
-				attr.addFlashAttribute("data_sum1",
-						jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
-
 			}
 		}
 		return "redirect:/outClassification";
 	}
-
+	
 	@GetMapping("/outClassification")
 	public String list3(Model model) {
-		// model.addAttribute("data1",jdbc.queryForList("SELECT * FROM spending"));
-		model.addAttribute("data_sum1", jdbc.queryForList("SELECT sum(out) FROM spending").get(0).get("sum(out)"));
-		model.addAttribute("data_day",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
-		model.addAttribute("data_month", jdbc
-				.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
-		model.addAttribute("data_year",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
+		Map<String, Object> map = jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0);
+		model.addAttribute("data_sum1", jdbc.queryForList("SELECT sum(out) FROM spending WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(out)"));
+		model.addAttribute("data_day",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
+		model.addAttribute("data_month", jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
+		model.addAttribute("data_year",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
+		model.addAttribute("data1",jdbc.queryForList("SELECT * FROM spending WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")));
 		return "/outClassification";
 	}
 
@@ -180,27 +177,18 @@ public class mianController {
 
 				jdbc.update("INSERT INTO accumulation (reason,acc,year,month,day) VALUES (?,?,?,?,?)", reason[i],
 						Integer.valueOf(acc[i]), year, month, day);
-				attr.addFlashAttribute("data2", jdbc.queryForList(
-						"SELECT * FROM accumulation WHERE year = ? AND month = ?AND day = ?;", year, month, day));
-				attr.addFlashAttribute("data_sum2",
-						jdbc.queryForList("SELECT sum(acc) FROM accumulation").get(0).get("sum(acc)"));
-
 			}
 		}
 		return "redirect:/accClassification";
 	}
-
 	@GetMapping("/accClassification")
 	public String list4(Model model) {
-		// model.addAttribute("data2",jdbc.queryForList("SELECT * FROM accumulation"));
-		model.addAttribute("data_sum2", jdbc.queryForList("SELECT sum(acc) FROM accumulation").get(0).get("sum(acc)"));
-		model.addAttribute("data_day",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
-		model.addAttribute("data_month", jdbc
-				.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
-		model.addAttribute("data_year",
-				jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
-
+		Map<String, Object> map = jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0);
+		model.addAttribute("data_sum2", jdbc.queryForList("SELECT sum(acc) FROM accumulation WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")).get(0).get("sum(acc)"));
+		model.addAttribute("data_day",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("day"));
+		model.addAttribute("data_month", jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("month"));
+		model.addAttribute("data_year",jdbc.queryForList("SELECT * FROM someday WHERE id = (SELECT MAX(id) FROM someday)").get(0).get("year"));
+		model.addAttribute("data2",jdbc.queryForList("SELECT * FROM accumulation WHERE year = ? AND month = ?AND day = ?;", map.get("year"),map.get("month"), map.get("day")));
 		return "/accClassification";
 	}
 

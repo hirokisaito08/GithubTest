@@ -27,7 +27,6 @@ function setCalendar(yy, mm) {
 
   // カレンダーに埋める数字を配列daysに格納する（5行で済めば35要素、6行なら42要素）
   var days = [];
-
   // 前月末が土曜日以外（日曜日から0,1,2・・・土曜日が6）
   if (zedy != 6) {
     // 前月最終日曜日から月末曜日までの日付（for逆回し）
@@ -85,7 +84,7 @@ function setCalendar(yy, mm) {
 
   out += "<tr>";
   for (var i in youbi) {
-    out += "<td>"+youbi[i]+"</td>";
+    out += "<td class='tdaaa'>"+youbi[i]+"</td>";
   }
 
 
@@ -188,7 +187,7 @@ caption {
 	margin: 4px auto;
 	padding: 2px;
 }
-youbi{
+days{
 	color: red;
 
 }
@@ -196,16 +195,20 @@ youbi{
 th {
   border: solid 1px #000000;
 }
-td {
+td  {
   border: solid 1px #000000;
   margin: 25px auto;
 	padding: 25px;
 	width: 1em;
 	text-align: center;
-	cursor: pointer;
+
+	}
+.tdaaa{
+	color :#a5a5a5
 }
+
 .tdlink {
-  //cursor: pointer;
+  cursor: pointer;
   // display: block;
 }
 .tdlink:hover {

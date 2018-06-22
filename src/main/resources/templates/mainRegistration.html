@@ -15,7 +15,7 @@
 
   </tr>
   <tr>
-    <td>収入</td>
+    <td>残高</td>
     <td><span th:text="${data_sum}"id="income"></span></td>
 
   </tr>
@@ -34,6 +34,7 @@
 <canvas id="myChart" ></canvas></div>
 
 
+
 <script type="text/javascript">
 
 var ctx = document.getElementById("myChart").getContext('2d');
@@ -44,20 +45,21 @@ var acc= document.getElementById("acc").innerText;
 
 console.log(document.getElementById("acc").innerText);
 
-
 var out1 = Number(out);
 var income1 = Number(income);
 var out2=Number(income-out-acc);
 
 var acc1 = Number(acc);
 
-
+document.getElementById("income").innerText=out2;
+document.getElementById("out").innerText=out1;
+document.getElementById("acc").innerText=acc1;
 
 var myChart = new Chart(ctx, {
 
   type: 'pie',
   data: {
-    labels: ["収入", "支出", "貯金"],
+    labels: ["残高", "支出", "貯金"],
     datasets: [{
       backgroundColor: [
         "#2ecc71",
