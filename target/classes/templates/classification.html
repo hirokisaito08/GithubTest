@@ -50,14 +50,16 @@ if (num == 4) button.disabled = true;
 金額<input type="number"name="sal">
 </div>
 </label>
-
 <input type="submit">
-
 </form>
+
+
 <input type="button" onclick="add(this);" value="項目追加">
  <input type="button" value="表示" onclick="location.href='./print'">
 <input type="button" onclick="location.href='./Registration'" value="戻る">
 
+
+  <a class="button" href = "index" >戻る</a> 
 
 
 
@@ -74,17 +76,12 @@ if (num == 4) button.disabled = true;
     <td><span th:text="${income.id}"></span></td>
     <td><span th:text="${income.reason}"></span></td>
     <td ><span th:text="${income.sal}"></span></td>
-
 </tr>
-
+</div>
+	<td><span th:text="${data_sum}"></span></td>
 </table>
 
-  <a class="button" href = "index" >戻る</a> 
-    
     <!--            /////////////////////////////////////////////////// -->
-
-</div>
-  <td><span th:text="${data_sum}"></span></td>
 
 
 

@@ -9,9 +9,9 @@ CREATE TABLE income (
     id INT AUTO_INCREMENT , 
     reason CHAR,
     sal INT,
-    year INT,
-    month INT,
-    day INT
+    year INT ,
+    month INT ,
+    day INT 
 
     
 );
