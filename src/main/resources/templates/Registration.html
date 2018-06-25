@@ -5,12 +5,32 @@
 
 </head>
 <body>
-
-
+<div class="print">
+<div class="onemonth">
 <table>
+  <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月の収支表</caption>
+  <tr style="background:#ccccff">
+    <th width="80">項目</th>
+    <th width="80">金額</th>
+  </tr>
+  <tr>
+    <td>収入</td>
+    <td><span th:text="${data_sum_month1}"></span></td>
+  </tr>
+  <tr>
+    <td>支出</td>
+    <td><span th:text="${data_sum_month2}"></span></td>
+  </tr>
+  <tr>
+    <td>貯金</td>
+    <td><span th:text="${data_sum_month3}"></span></td>
+  </tr>
+</table>
+</div>
 
+<div class="oneday">
+<table>
   <caption><span th:text="${data_year}"id="year"></span>年<span th:text="${data_month}"id="month"></span>月<span th:text="${data_day}"id="day"></span>日の収支表</caption>
-
   <tr style="background:#ccccff">
     <th width="60">項目</th>
     <th width="60">金額</th>
@@ -18,7 +38,7 @@
   </tr>
   <tr>
     <td>収入</td>
-    <td><span th:text="${data_sum01}"id="income"></span></td>
+    <td><span th:text="${data_sum00}"id="income"></span></td>
     <td><input type="button" onclick="location.href='./classification'" value="登録"></td>
   </tr>
   <tr>
@@ -32,8 +52,74 @@
     <td><input type="button" onclick="location.href='./accClassification'" value="登録"></td>
   </tr>
 </table>
+</div>
+</div>
 <input type="button" onclick="location.href='./index'" value="戻る">
-<span th:text="${data_sum02}" id="data02"></span>
+<div hidden>
+<span th:text="${data_sum01}" id="data01">:</span> 
+<span th:text="${data_sum02}" id="data02">:</span>
+<span th:text="${data_sum03}" id="data03">:</span>
+<span th:text="${data_sum04}" id="data04">:</span>
+<span th:text="${data_sum05}" id="data05">:</span>
+<span th:text="${data_sum06}" id="data06">:</span>
+<span th:text="${data_sum07}" id="data07">:</span>
+<span th:text="${data_sum08}" id="data08">:</span>
+<span th:text="${data_sum09}" id="data09">:</span>
+<span th:text="${data_sum010}" id="data010">:</span>
+<span th:text="${data_sum011}" id="data011">:</span>
+<span th:text="${data_sum012}" id="data012">:</span>
+<span th:text="${data_sum013}" id="data013">:</span>
+<span th:text="${data_sum014}" id="data014">:</span>
+<span th:text="${data_sum015}" id="data015">:</span>
+<span th:text="${data_sum016}" id="data016">:</span>
+<span th:text="${data_sum017}" id="data017">:</span>
+<span th:text="${data_sum018}" id="data018">:</span>
+<span th:text="${data_sum019}" id="data019">:</span>
+<span th:text="${data_sum020}" id="data020">:</span>
+<span th:text="${data_sum021}" id="data021">:</span>
+<span th:text="${data_sum022}" id="data022">:</span>
+<span th:text="${data_sum023}" id="data023">:</span>
+<span th:text="${data_sum024}" id="data024">:</span>
+<span th:text="${data_sum025}" id="data025">:</span>
+<span th:text="${data_sum026}" id="data026">:</span>
+<span th:text="${data_sum027}" id="data027">:</span>
+<span th:text="${data_sum028}" id="data028">:</span>
+<span th:text="${data_sum029}" id="data029">:</span>
+<span th:text="${data_sum030}" id="data030">:</span>
+<span th:text="${data_sum031}" id="data031">:</span>
+
+<span th:text="${data_sum11}" id="data11">:</span>
+<span th:text="${data_sum12}" id="data12">:</span>
+<span th:text="${data_sum13}" id="data13">:</span>
+<span th:text="${data_sum14}" id="data14">:</span>
+<span th:text="${data_sum15}" id="data15">:</span>
+<span th:text="${data_sum16}" id="data16">:</span>
+<span th:text="${data_sum17}" id="data17">:</span>
+<span th:text="${data_sum18}" id="data18">:</span>
+<span th:text="${data_sum19}" id="data19">:</span>
+<span th:text="${data_sum110}" id="data110">:</span>
+<span th:text="${data_sum111}" id="data111">:</span>
+<span th:text="${data_sum112}" id="data112">:</span>
+<span th:text="${data_sum113}" id="data113">:</span>
+<span th:text="${data_sum114}" id="data114">:</span>
+<span th:text="${data_sum115}" id="data115">:</span>
+<span th:text="${data_sum116}" id="data116">:</span>
+<span th:text="${data_sum117}" id="data117">:</span>
+<span th:text="${data_sum118}" id="data118">:</span>
+<span th:text="${data_sum119}" id="data119">:</span>
+<span th:text="${data_sum120}" id="data120">:</span>
+<span th:text="${data_sum121}" id="data121">:</span>
+<span th:text="${data_sum122}" id="data122">:</span>
+<span th:text="${data_sum123}" id="data123">:</span>
+<span th:text="${data_sum124}" id="data124">:</span>
+<span th:text="${data_sum125}" id="data125">:</span>
+<span th:text="${data_sum126}" id="data126">:</span>
+<span th:text="${data_sum127}" id="data127">:</span>
+<span th:text="${data_sum128}" id="data128">:</span>
+<span th:text="${data_sum129}" id="data129">:</span>
+<span th:text="${data_sum130}" id="data130">:</span>
+<span th:text="${data_sum131}" id="data131">:</span>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
 <div class ="chart"style="position: relative; height:35vh; width:70vw">
 <canvas id="myBar2Chart" ></canvas></div>
@@ -45,16 +131,81 @@ var out = document.getElementById("out").innerText;
 var income = document.getElementById("income").innerText;
 var acc= document.getElementById("acc").innerText;
 
+var data01= Number(document.getElementById("data01").innerText);
+var data02= Number(document.getElementById("data02").innerText);
+var data03= Number(document.getElementById("data03").innerText);
+var data04= Number(document.getElementById("data04").innerText);
+var data05= Number(document.getElementById("data05").innerText);
+var data06= Number(document.getElementById("data06").innerText);
+var data07= Number(document.getElementById("data07").innerText);
+var data08= Number(document.getElementById("data08").innerText);
+var data09= Number(document.getElementById("data09").innerText);
+var data010= Number(document.getElementById("data010").innerText);
+var data011= Number(document.getElementById("data011").innerText);
+var data012= Number(document.getElementById("data012").innerText);
+var data013= Number(document.getElementById("data013").innerText);
+var data014= Number(document.getElementById("data014").innerText);
+var data015= Number(document.getElementById("data015").innerText);
+var data016= Number(document.getElementById("data016").innerText);
+var data017= Number(document.getElementById("data017").innerText);
+var data018= Number(document.getElementById("data018").innerText);
+var data019= Number(document.getElementById("data019").innerText);
+var data020= Number(document.getElementById("data020").innerText);
+var data021= Number(document.getElementById("data021").innerText);
+var data022= Number(document.getElementById("data022").innerText);
+var data023= Number(document.getElementById("data023").innerText);
+var data024= Number(document.getElementById("data024").innerText);
+var data025= Number(document.getElementById("data025").innerText);
+var data026= Number(document.getElementById("data026").innerText);
+var data027= Number(document.getElementById("data027").innerText);
+var data028= Number(document.getElementById("data028").innerText);
+var data029= Number(document.getElementById("data029").innerText);
+var data030= Number(document.getElementById("data030").innerText);
+var data031= Number(document.getElementById("data031").innerText);
 
-var data02=document.getElementById("data02").innerText;
+var data11= Number(document.getElementById("data11").innerText);
+var data12= Number(document.getElementById("data12").innerText);
+var data13= Number(document.getElementById("data13").innerText);
+var data14= Number(document.getElementById("data14").innerText);
+var data15= Number(document.getElementById("data15").innerText);
+var data16= Number(document.getElementById("data16").innerText);
+var data17= Number(document.getElementById("data17").innerText);
+var data18= Number(document.getElementById("data18").innerText);
+var data19= Number(document.getElementById("data19").innerText);
+var data110= Number(document.getElementById("data110").innerText);
+var data111= Number(document.getElementById("data111").innerText);
+var data112= Number(document.getElementById("data112").innerText);
+var data113= Number(document.getElementById("data113").innerText);
+var data114= Number(document.getElementById("data114").innerText);
+var data115= Number(document.getElementById("data115").innerText);
+var data116= Number(document.getElementById("data116").innerText);
+var data117= Number(document.getElementById("data117").innerText);
+var data118= Number(document.getElementById("data118").innerText);
+var data119= Number(document.getElementById("data119").innerText);
+var data120= Number(document.getElementById("data120").innerText);
+var data121= Number(document.getElementById("data121").innerText);
+var data122= Number(document.getElementById("data122").innerText);
+var data123= Number(document.getElementById("data123").innerText);
+var data124= Number(document.getElementById("data124").innerText);
+var data125= Number(document.getElementById("data125").innerText);
+var data126= Number(document.getElementById("data126").innerText);
+var data127= Number(document.getElementById("data127").innerText);
+var data128= Number(document.getElementById("data128").innerText);
+var data129= Number(document.getElementById("data129").innerText);
+var data130= Number(document.getElementById("data130").innerText);
+var data131= Number(document.getElementById("data131").innerText);
 
+
+console.log(document.getElementById(data01));
 var out1 = Number(out);
 var income1 = Number(income);
 var out2=Number(income-out-acc);
 
 var acc1 = Number(acc);
-var data022 =Number(data02);
-
+/*
+var data01 =Number(data01);
+var data02=Number(data02);
+*/
 
 //棒グラフ2
 var ctx = document.getElementById("myBar2Chart");
@@ -64,12 +215,12 @@ var myBar2Chart = new Chart(ctx, {
   //データの設定
   data: {
       //データ項目のラベル
-      labels: ["1月", "2月", "3月", "4月", "5月", "6月"],
+      labels: ["1日","2日","3日","4日","5日","6日","7日","8日","9日","10日","11日","12日","13日","14日","15日","16日","17日","18日","19日","20日","21日","22日","23日","24日","25日","26日","27日","28日","29日","30日","31日"],
       //データセット
       datasets: [
           {
               //凡例
-              label: "1年目",
+              label: "収入",
               //背景色
               backgroundColor: "rgba(179,181,198,0.2)",
               //枠線の色
@@ -81,11 +232,11 @@ var myBar2Chart = new Chart(ctx, {
               //枠線の色（ホバーしたときに）
               hoverBorderColor: "rgba(179,181,198,1)",
               //グラフのデータ
-              data: [12, 19, , 5, data022, income]
+              data: [data01,data02,data03,data04,data05,data06,data07,data08,data09,data010,data011,data012,data013,data014,data015,data016,data017,data018,data019,data020,data021,data022,data023,data024,data025,data026,data027,data028,data029,data030,data031]
           },
           {
               //凡例
-              label: "2年目",
+              label: "支出",
               //背景色
               backgroundColor: "rgba(255,99,132,0.2)",
               //枠線の色
@@ -97,7 +248,7 @@ var myBar2Chart = new Chart(ctx, {
               //枠線の色（ホバーしたときに）
               hoverBorderColor: "rgba(255,99,132,1)",
               //グラフのデータ
-              data: [15, 15, out, 8, 5, 6]
+              data: [data11,data12,data13,data14,data15,data16,data17,data18,data19,data110,data111,data112,data113,data114,data115,data116,data117,data118,data119,data120,data121,data122,data123,data124,data125,data126,data127,data128,data129,data130,data131]
           }
       ]
   },
@@ -133,8 +284,21 @@ canvas{
   margin:5 auto;
 }
 body {overflow-y:hidden;}
+
+
+.print{
+margin: 30 auto;
+padding: 10px;
+text-align:center;
+}
+.onemonth{
+display: inline-flexflex;
+float:left;
+}
+.oneday{
+display: inline-flex;
+}
+
 </style>
-
-
 </body>
 </html>

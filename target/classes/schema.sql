@@ -2,7 +2,7 @@ CREATE TABLE someday (
 	id INT AUTO_INCREMENT,
     year INT ,
     month INT ,
-    day INT 
+    day INT
 );
   
 CREATE TABLE income (  
@@ -12,7 +12,6 @@ CREATE TABLE income (
     year INT ,
     month INT ,
     day INT
-    
 );
   
 CREATE TABLE spending (  
